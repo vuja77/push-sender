@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+/* styles.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: black;
+}
+
+button {
+  padding: 15px 30px;
+  background-color: #3498db; /* Plava boja */
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9; /* Tamnija nijansa plave boje na hoveru */
+}
