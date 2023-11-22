@@ -22,11 +22,7 @@ function App() {
     )
   }
   const fetchLastNews = async () => {
-    await axios.get("https://ura.org.me/wp-json/ura/v1/posts", {
-      headers: {
-          'Cache-Control': 'no-cache',
-      },
-  })
+    await axios.get("https://ura.org.me/wp-json/ura/v1/posts")
     .then(response => setLast(response.data.data[0]))
   }
   useEffect(() => {
