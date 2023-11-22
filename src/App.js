@@ -27,7 +27,7 @@ function App() {
   }
   useEffect(() => {
     fetchLastNews()
-  })
+  }, [])
   return (
     <div className="App">
       <button onClick={() => Send()}>Send notification</button>
