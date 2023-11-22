@@ -1,14 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
 import axios from "axios"
+import { useEffect } from 'react';
+import { useState } from 'react';
 function App() {
+  const [last, setLast] = useState()
   const Send = async () => {
     await axios.post("https://fcm.googleapis.com/fcm/send", {
       to: "/topics/Blog",
       notification: {
-        title: "Milena Vuković: Najoštrije osuđujem sramotne uvrede Šešelja prema Vuksanović Stanković",
-        body: "tekst notifikacije.....",
-        image: "https://ura.org.me/wp-content/uploads/2023/11/53299325846_4ca27f18f9_o.jpg"
+        title: last.title,
+        body: last.intro,
+        image: last.imageSrc
       }
     },
       {
@@ -18,6 +21,17 @@ function App() {
       }
     )
   }
+  const fetchLastNews = async () => {
+    await axios.get("https://ura.org.me/wp-json/ura/v1/posts", {
+      headers: {
+          'Cache-Control': 'no-cache',
+      },
+  })
+    .then(response => setLast(response.data.data[0]))
+  }
+  useEffect(() => {
+    fetchLastNews()
+  })
   return (
     <div className="App">
       <button onClick={() => Send()}>Send notification</button>
